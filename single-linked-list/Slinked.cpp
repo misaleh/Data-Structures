@@ -21,8 +21,8 @@ void Slinkedlist::InsertHead(int newelement, node **nodeptr)
 	{
 		node *newnode  = new node ;  // allocate new node
 		newnode->element = newelement;  // assign its value 
+		newnode->ptr = head; // make it poin to the head 
 		*nodeptr = newnode; // to return ptr to it 
-		newnode->ptr = head->ptr; // make it poin to the head 
 		head = newnode; // it is the new head now
 		size ++;
 		
@@ -39,18 +39,30 @@ void Slinkedlist::RemoveHead(void)
 		{
 				std::cout<<"ERROR: list is empty"<<std::endl;
 		}		
-		else{
+		else
+		{
 			node * next =  head->ptr;  // the element next to head 
 			head = next ;  //make it the head now
 		}
 		size --;
 		
 	}
-int Slinkedlist::Current(int * currentelement)
+bool Slinkedlist::Tail(int * currentelement)
 	{
 		if(size != 0)
 			{
 				 *currentelement  =  tail->element;  // return the tail element
+				 return 1 ; // the list is not empty
+			}
+		else
+			return 0;//list is empty
+
+	} 
+bool Slinkedlist::Head(int * headelement)
+	{
+		if(size != 0)
+			{
+				 *headelement  =  head->element;  // return the tail element
 				 return 1 ; // the list is not empty
 			}
 		else
