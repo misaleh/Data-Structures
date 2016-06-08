@@ -112,6 +112,7 @@ bool Slinkedlist::Search(int lookfor)
 		node temp  = *head ;
 		for(i = 0 ; i < size ; i++)
 		{
+		std::cout<<"current element"<< temp.element<<std::endl;
 			if(temp.element == lookfor)
 			{
 				return 1;

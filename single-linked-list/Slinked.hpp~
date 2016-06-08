@@ -11,7 +11,7 @@ public:
 	void InsertHead(int , node **); // insert element at tail  , returns pointer to the node
 	void RemoveHead(void);  //  remove element at head
 	void RemoveTail(void);  //removes element from tail
-	bool Search(int  );         // search the linked list
+	bool Search(int * );         // search the linked list
 	bool Tail(int *);           // gets the last element
 	bool Head(int *);            //gets the head of the list
 	

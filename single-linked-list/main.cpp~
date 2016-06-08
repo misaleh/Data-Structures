@@ -77,9 +77,9 @@ int main()
 	ll.Tail(&element);
 	cout<<"	Tail is = "<<element<<endl;
 
-	result = ll.Search(10);
+	result = Search(10);
 	cout << "searching for 10 = "<<result << endl;
-	result = ll.Search(11);
+	result = Search(11);
 	cout << "searching for 11= "<<result << endl;
 	return 0 ;
 }
