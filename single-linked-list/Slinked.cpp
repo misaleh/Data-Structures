@@ -7,22 +7,21 @@ Slinkedlist::Slinkedlist(int head_element)
 		tail  = head ;   //the tail is the head as it has one element only now 
 		size =  1 ; 
 	}
-void Slinkedlist::InsertTail(int newelement, node *nodeptr)
+void Slinkedlist::InsertTail(int newelement, node **nodeptr)
 	{
 		node *newnode  = new node ;  // allocate new  node 
 		newnode->element = newelement; // assign its value 
-		nodeptr = newnode;  // to return ptr to it
+		*nodeptr =  newnode;
 		tail->ptr=  newnode;  // the last element will point ot this 
 		tail = newnode; //this is the last element now 
 		size++;
-		std::cout<<" CLASS current node ptr is = "<<nodeptr<<std::endl;
 		
 	}
-void Slinkedlist::InsertHead(int newelement, node *nodeptr)
+void Slinkedlist::InsertHead(int newelement, node **nodeptr)
 	{
 		node *newnode  = new node ;  // allocate new node
 		newnode->element = newelement;  // assign its value 
-		nodeptr = newnode; // to return ptr to it 
+		*nodeptr = newnode; // to return ptr to it 
 		newnode->ptr = head->ptr; // make it poin to the head 
 		head = newnode; // it is the new head now
 		size ++;

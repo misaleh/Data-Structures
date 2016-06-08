@@ -7,8 +7,8 @@ struct node {   // the structure of the node
 class Slinkedlist {
 public:
 	Slinkedlist(int); 	       // constructor
-	void InsertTail(int , node *);  // insert element at head 
-	void InsertHead(int , node *); // insert element at tail 
+	void InsertTail(int , node **);  // insert element at head , returns poitner to the node 
+	void InsertHead(int , node **); // insert element at tail  , returns pointer to the node
 	void RemoveHead(void);  //  remove element at head
 	bool Search(int * );         // search the linked list
 	int Current(int *);           // gets the last element
