@@ -81,5 +81,7 @@ int main()
 	cout << "searching for 10 = "<<result << endl;
 	result = ll.Search(11);
 	cout << "searching for 11= "<<result << endl;
+	//Size
+	cout<<"Size of list =  "<<ll.Size()<<endl;
 	return 0 ;
 }

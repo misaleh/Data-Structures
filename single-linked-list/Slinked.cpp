@@ -120,4 +120,8 @@ bool Slinkedlist::Search(int lookfor)
 		temp = *(temp.ptr);			
 		}
 		return 0 ;
-	}	
+	}
+unsigned long int Slinkedlist::Size(void)	
+{
+	return size;
+}

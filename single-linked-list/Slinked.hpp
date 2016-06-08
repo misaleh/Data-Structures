@@ -14,6 +14,7 @@ public:
 	bool Search(int  );         // search the linked list
 	bool Tail(int *);           // gets the last element
 	bool Head(int *);            //gets the head of the list
+	unsigned long int Size(void);// return size
 	
 private: 
 	node *tail ;    // tale node
