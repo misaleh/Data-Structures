@@ -10,6 +10,7 @@ public:
 	QUEUE();
 	~QUEUE();
 	QUEUE(const QUEUE &Qcopy);
+	QUEUE& operator=(QUEUE &Qcopy);
 	void Enqueue(int element);
 	void Dequeue(int &element);
 	void Front(int &element); 

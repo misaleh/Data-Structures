@@ -20,6 +20,30 @@ QUEUE::~QUEUE()
 			delete tmp;
 		}
 	}
+QUEUE& QUEUE::operator=(QUEUE &Qcopy )	
+	{
+		//std::cout<<"Copying --------------->"<<std::endl;
+		if(Qcopy.head == NULL) return *this; //if list is empty, nothing to copy
+		this->head = new node;  //allocate new memory for the new head
+		(this->head)->element =  (Qcopy.head)->element; //first element in new queue equals to the first element in old queue
+		node* tmp = (Qcopy.head)->ptr;  //temproray equals to head of list to be copied from 
+		node* tmp2 = (this->head);  //temproray equals to head of list to be copied to
+
+
+		while((tmp) != NULL) //as long has not reached tail
+			{
+				tmp2->ptr = new node; //allocate new node for the next
+				tmp2 = tmp2->ptr;	//make temproray point to the next node
+				tmp2->element = tmp->element; // copy the element from the othe list
+				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
+			}
+		tmp2->ptr = NULL; // next node to the tail is null
+		(this->tail) = tmp2; // the last node is the tail 
+		this->rear  = Qcopy.rear;
+		this->front = Qcopy.front;
+		this->size = Qcopy.size;
+		return *this;
+	}
 QUEUE::QUEUE(const QUEUE &Qcopy) // copy constructor
 	{	
 		//std::cout<<"Copying --------------->"<<std::endl;

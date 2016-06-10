@@ -19,10 +19,16 @@ int main()
 	//dequeue
 	Q.Dequeue(element);
 	cout<<"Dequeue = "<<element<<endl;
+
+	//size
+
+	QUEUE Q3;
+	cout<<"Size = "<<Q.Size()<<endl; 
+	Q3 = Q;
 	Q.Dequeue(element);
 	cout<<"Dequeue = "<<element<<endl;
-	//size
-	cout<<"Size = "<<Q.Size()<<endl; 	
+	Q3.Front(element);
+	cout<<"Front Q3 = "<<element<<endl;
 
 
 	return 0;
