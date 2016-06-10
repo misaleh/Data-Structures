@@ -1,5 +1,6 @@
-#include <iostream>
+
 #include "Slinked.hpp"
+#include <iostream>
 using namespace std;
 
 int main()
@@ -7,10 +8,11 @@ int main()
 	bool result ; //used for searching
 	/*  Some test cases */
 	//Tail
-	cout<<"*INIT with 5"<<endl;
-	node * nodeptr= new node ; ; 
+	node * nodeptr= new node ;  
 	int element;
-	Slinkedlist ll(5);
+	Slinkedlist ll;
+	cout<<"*Insert Tail = 5"<<endl;
+	ll.InsertTail(5,&nodeptr);
 	ll.Head(&element);
 	cout<<"	Head  is = "<<element<<endl;
 	ll.Tail(&element);	
@@ -83,5 +85,13 @@ int main()
 	cout << "searching for 11= "<<result << endl;
 	//Size
 	cout<<"Size of list =  "<<ll.Size()<<endl;
+
+	//copy
+	Slinkedlist lll;
+	lll = ll ;
+	lll.Head(&element);
+	cout<<"	Head lll is = "<<element<<endl;
+	lll.Tail(&element);
+	cout<<"	Tail lll is = "<<element<<endl;
 	return 0 ;
 }

@@ -1,15 +1,73 @@
 #include "Slinked.hpp"
 #include <iostream>
-Slinkedlist::Slinkedlist(int head_element)
+Slinkedlist::Slinkedlist()
 	{
 		head  = new node ;   // allocate the head element
-		head->element = head_element;	  //assign value to it
+		//head->element = head_element;	  //assign value to it
 		tail  = head;
 		tail->ptr = NULL;
-		size =  1 ; 
+		size =  0 ; 
+	}
+Slinkedlist::~Slinkedlist()
+	{
+		int i  = 0 ; 
+		while(head) // delete all nodes
+		{
+			node *tmp = head;
+			head = head->ptr;
+			delete tmp;
+		}	
+	}
+Slinkedlist::Slinkedlist(Slinkedlist& Lcopy)
+	{
+		//std::cout<<"Copying --------------->"<<std::endl;
+		if(Lcopy.head == NULL) return; //if list is empty, nothing to copy
+		this->head = new node;  //allocate new memory for the new head
+		this->tail = new node;  //allocate new memory for the new head
+		(this->head)->element =  (Lcopy.head)->element; //first element in new queue equals to the first element in old queue
+		node* tmp = (Lcopy.head)->ptr;  //temproray equals to head of list to be copied from 
+		node* tmp2 = (this->head);  //temproray equals to head of list to be copied t
+		while((tmp) != NULL) //as long has not reached tail
+			{
+				tmp2->ptr = new node; //allocate new node for the next
+				tmp2 = tmp2->ptr;	//make temproray point to the next node
+				tmp2->element = tmp->element; // copy the element from the othe list
+				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
+			}
+		tmp2->ptr = NULL; // next node to the tail is null
+		this->size = Lcopy.size;
+		(this->tail)->element = (Lcopy.tail)->element;
+	}
+Slinkedlist& Slinkedlist::operator=(Slinkedlist& Lcopy)
+	{
+		//std::cout<<"Copying --------------->"<<std::endl;
+		if(Lcopy.head == NULL) return *this; //if list is empty, nothing to copy
+		this->head = new node;  //allocate new memory for the new head
+		this->tail = new node;  //allocate new memory for the new head
+		(this->head)->element =  (Lcopy.head)->element; //first element in new queue equals to the first element in old queue
+		node* tmp = (Lcopy.head)->ptr;  //temproray equals to head of list to be copied from 
+		node* tmp2 = (this->head);  //temproray equals to head of list to be copied t
+		while((tmp) != NULL) //as long has not reached tail
+			{
+				tmp2->ptr = new node; //allocate new node for the next
+				tmp2 = tmp2->ptr;	//make temproray point to the next node
+				tmp2->element = tmp->element; // copy the element from the othe list
+				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
+			}
+		tmp2->ptr = NULL; // next node to the tail is null
+		this->size = Lcopy.size;
+		(this->tail)->element = (Lcopy.tail)->element;
+		return *this;
 	}
 void Slinkedlist::InsertTail(int newelement, node **nodeptr)
 	{
+		if(size ==  0)  // not first time 
+		{
+			head->element = newelement;  // assign its value
+			head->ptr = NULL ; // as it is also the tail now 
+			size ++;
+			return; 
+		}
 		node *newnode  = new node ;  // allocate new  node 
 		newnode->element = newelement; // assign its value 
 		*nodeptr =  newnode;
@@ -21,6 +79,13 @@ void Slinkedlist::InsertTail(int newelement, node **nodeptr)
 	}
 void Slinkedlist::InsertHead(int newelement, node **nodeptr)
 	{
+			if(size ==  0)  // not first time 
+		{
+			head->element = newelement;  // assign its value
+			head->ptr = NULL ; // as it is also the tail now 
+			size ++;
+			return; 
+		}
 		node *newnode  = new node ;  // allocate new node
 		newnode->element = newelement;  // assign its value 
 		newnode->ptr = head; // make it poin to the head 

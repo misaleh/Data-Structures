@@ -6,7 +6,10 @@ struct node {   // the structure of the node
 	 };
 class Slinkedlist {
 public:
-	Slinkedlist(int); 	       // constructor
+	Slinkedlist(); 	       // constructor
+	~Slinkedlist();  //destructor
+	Slinkedlist(Slinkedlist&);  //copy constructor
+	Slinkedlist& operator=(Slinkedlist&); //assingment overloading
 	void InsertTail(int , node **);  // insert element at head , returns poitner to the node 
 	void InsertHead(int , node **); // insert element at tail  , returns pointer to the node
 	void RemoveHead(void);  //  remove element at head
