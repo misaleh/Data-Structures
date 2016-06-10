@@ -6,7 +6,6 @@ QUEUE::QUEUE(int size)
 		_size = size ;
 		front = 0;
 		rear= 0;
-		ElementCount = 0 ; 
 	}
 QUEUE::~QUEUE()
 	{
@@ -14,7 +13,18 @@ QUEUE::~QUEUE()
 	}
 QUEUE::QUEUE(const QUEUE &Qcopy) // copy constructor
 	{
-		q = new int[_size];
+		//std::cout<<"copying------>"<<std::endl;
+
+		int i =  0;
+		this->_size = Qcopy._size;
+		this->front = Qcopy.front;
+		this->rear = Qcopy.rear;
+		this->q = new int[_size];
+		for(i =Qcopy.front ; i <Qcopy.rear ; i++ )
+		{			
+			(this->q)[i] = (Qcopy.q)[i];
+		}
+		
 	}
 bool QUEUE::Enqueue(int element)
 	{

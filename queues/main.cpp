@@ -24,5 +24,12 @@ int main()
 	cout<<"Dequeue = "<<element<<endl;
 	//size
 	cout<<"Size = "<<Q.Size()<<endl;
+	QUEUE Q2 = Q;
+	Q.Front(element);
+	cout<<"Front = "<<element<<endl;
+	Q2.Front(element);
+	cout<<"Front2 = "<<element<<endl;
+	
+
 	return 0;
 }
