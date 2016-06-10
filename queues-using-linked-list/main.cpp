@@ -1,6 +1,5 @@
 #include <iostream>
 #include "queues.hpp"
-// circular safe for coppying
 using namespace std;
 int main()
 {	
@@ -23,6 +22,8 @@ int main()
 	Q.Dequeue(element);
 	cout<<"Dequeue = "<<element<<endl;
 	//size
-	cout<<"Size = "<<Q.Size()<<endl;
+	cout<<"Size = "<<Q.Size()<<endl; 	
+
+
 	return 0;
 }
