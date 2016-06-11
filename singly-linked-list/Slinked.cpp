@@ -3,7 +3,6 @@
 Slinkedlist::Slinkedlist()
 	{
 		head  = new node ;   // allocate the head element
-		//head->element = head_element;	  //assign value to it
 		tail  = head;
 		tail->ptr = NULL;
 		size =  0 ; 
@@ -34,6 +33,7 @@ Slinkedlist::Slinkedlist(Slinkedlist& Lcopy)
 				tmp2->element = tmp->element; // copy the element from the othe list
 				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
 			}
+		tail = tmp2;
 		tmp2->ptr = NULL; // next node to the tail is null
 		this->size = Lcopy.size;
 		(this->tail)->element = (Lcopy.tail)->element;
@@ -54,6 +54,7 @@ Slinkedlist& Slinkedlist::operator=(Slinkedlist& Lcopy)
 				tmp2->element = tmp->element; // copy the element from the othe list
 				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
 			}
+		tail = tmp2;
 		tmp2->ptr = NULL; // next node to the tail is null
 		this->size = Lcopy.size;
 		(this->tail)->element = (Lcopy.tail)->element;
@@ -61,7 +62,7 @@ Slinkedlist& Slinkedlist::operator=(Slinkedlist& Lcopy)
 	}
 void Slinkedlist::InsertTail(int newelement, node **nodeptr)
 	{
-		if(size ==  0)  // not first time 
+		if(size ==  0)  //  first time 
 		{
 			head->element = newelement;  // assign its value
 			head->ptr = NULL ; // as it is also the tail now 

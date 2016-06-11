@@ -1,51 +1,49 @@
-#include "Dlinked.hpp"
+#include "Clinked.hpp"
 #include <iostream>
-Dlinkedlist::Dlinkedlist()
+Clinkedlist::Clinkedlist()
 	{
 		head  = new node ;   // allocate the head element
-		//head->element = head_element;	  //assign value to it
 		tail  = head;
-		tail->ptr = NULL;
-		tail->prev = NULL;
+		tail->ptr = head;
 		size =  0 ; 
 	}
-Dlinkedlist::~Dlinkedlist()
+Clinkedlist::~Clinkedlist()
 	{
-		int i  = 0 ; 
-		while(head) // delete all nodes
+		unsigned long int i  = 0 ; 
+	
+		for(i = 0 ; i <size ; i++) // delete all nodes
 		{
 			node *tmp = head;
 			head = head->ptr;
 			delete tmp;
-		}	
+		}
 	}
-Dlinkedlist::Dlinkedlist(Dlinkedlist& Lcopy)
+Clinkedlist::Clinkedlist(Clinkedlist& Lcopy)
 	{
+		unsigned long int i  = 0 ; 
 		//std::cout<<"Copying --------------->"<<std::endl;
 		if(Lcopy.head == NULL) return; //if list is empty, nothing to copy
 		this->head = new node;  //allocate new memory for the new head
 		this->tail = new node;  //allocate new memory for the new head
 		(this->head)->element =  (Lcopy.head)->element; //first element in new queue equals to the first element in old queue
 		node* tmp = (Lcopy.head)->ptr;  //temproray equals to head of list to be copied from 
-		node* tmp2 = (this->head);  //temproray equals to head of list to be copied it
-		node* tmp3 = tmp2;
-		while((tmp) != NULL) //as long has not reached tail
+		node* tmp2 = (this->head);  //temproray equals to head of list to be copied t
+		for(i = 1; i < Lcopy.size ; i++) //for number of nodes in old list
 			{
 				tmp2->ptr = new node; //allocate new node for the next
 				tmp2 = tmp2->ptr;	//make temproray point to the next node
 				tmp2->element = tmp->element; // copy the element from the othe list
-				tmp2->prev = tmp3;			//previous pointer points to the previous node
 				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
-				tmp3 = tmp2;   // temproray used for previous pointer points to the next element to it
-				
 			}
+		//tmp2->ptr = head;
 		tail = tmp2;
-		tmp2->ptr = NULL; // next node to the tail is null
 		this->size = Lcopy.size;
 		(this->tail)->element = (Lcopy.tail)->element;
+		(this->tail)->ptr = this->head;
 	}
-Dlinkedlist& Dlinkedlist::operator=(Dlinkedlist& Lcopy)
+Clinkedlist& Clinkedlist::operator=(Clinkedlist& Lcopy)
 	{
+		unsigned long int i  = 0 ; 	
 		//std::cout<<"Copying --------------->"<<std::endl;
 		if(Lcopy.head == NULL) return *this; //if list is empty, nothing to copy
 		this->head = new node;  //allocate new memory for the new head
@@ -53,63 +51,56 @@ Dlinkedlist& Dlinkedlist::operator=(Dlinkedlist& Lcopy)
 		(this->head)->element =  (Lcopy.head)->element; //first element in new queue equals to the first element in old queue
 		node* tmp = (Lcopy.head)->ptr;  //temproray equals to head of list to be copied from 
 		node* tmp2 = (this->head);  //temproray equals to head of list to be copied t
-		node* tmp3 = tmp2;
-		while((tmp) != NULL) //as long has not reached tail
+		for(i = 1 ; i < Lcopy.size ; i++) //for number of nodes in old list
 			{
 				tmp2->ptr = new node; //allocate new node for the next
 				tmp2 = tmp2->ptr;	//make temproray point to the next node
 				tmp2->element = tmp->element; // copy the element from the othe list
 				tmp = tmp->ptr;   //make the ptr of the original list points to the next element
-				tmp3 = tmp2;   // temproray used for previous pointer points to the next element
 			}
 		tail = tmp2;
-		tmp2->ptr = NULL; // next node to the tail is null
 		this->size = Lcopy.size;
 		(this->tail)->element = (Lcopy.tail)->element;
+		(this->tail)->ptr = this->head;
 		return *this;
 	}
-void Dlinkedlist::InsertTail(int newelement, node **nodeptr)
+void Clinkedlist::InsertTail(int newelement, node **nodeptr)
 	{
-		if(size ==  0)  //  first time 
+		if(size ==  0)  // not first time 
 		{
 			head->element = newelement;  // assign its value
-			head->ptr = NULL ; // as it is also the tail now 
-			head->prev = NULL ; 
+			head->ptr = head ; // as it is also the tail now 
 			size ++;
 			return; 
 		}
-		node *previous = new node;
 		node *newnode  = new node ;  // allocate new  node 
 		newnode->element = newelement; // assign its value 
 		*nodeptr =  newnode;
-		previous = tail;
 		tail->ptr=  newnode;  // the last element will point ot this 
 		tail = newnode; //this is the last element now 
-		tail->ptr = NULL;
-		tail->prev = previous;  // previous pointer of tail will point to the old tail
+		tail->ptr = head; // point to head (circular)
 		size++;
 		
 	}
-void Dlinkedlist::InsertHead(int newelement, node **nodeptr)
+void Clinkedlist::InsertHead(int newelement, node **nodeptr)
 	{
-		if(size ==  0)  //  first time 
+		if(size ==  0)  // not first time 
 		{
 			head->element = newelement;  // assign its value
-			head->ptr = NULL ; // as it is also the tail now 
-			head->prev = NULL ; 
+			head->ptr = head ; // as it is also the tail now 
 			size ++;
 			return; 
 		}
 		node *newnode  = new node ;  // allocate new node
 		newnode->element = newelement;  // assign its value 
 		newnode->ptr = head; // make it poin to the head 
-		head->prev = newnode ; // old head previous pointer will point to the new head
 		*nodeptr = newnode; // to return ptr to it 
 		head = newnode; // it is the new head now
+		tail->ptr = head;//point to head (circular)
 		size ++;
 		
 	}	
-void Dlinkedlist::RemoveHead(void)
+void Clinkedlist::RemoveHead(void)
 	{
 		if(size == 1) //if it was the last element
 		{
@@ -126,12 +117,12 @@ void Dlinkedlist::RemoveHead(void)
 		{
 			node * next =  head->ptr;  // the element next to head 
 			head = next ;  //make it the head now
-			head->prev = NULL;
+			tail->ptr = head; //point to head (circular)
 		}
 		size --;
 		
 	}
-void Dlinkedlist::RemoveTail(void)
+void Clinkedlist::RemoveTail(void)
 	{	
 		unsigned long int i ;
 		node *temp = new node;	
@@ -156,7 +147,7 @@ void Dlinkedlist::RemoveTail(void)
 				{
 					delete tail;
 					tail = temp;
-					tail->ptr = NULL; 
+					tail->ptr = head; //point to head(circular)
 					break;
 				}
 			temp = temp->ptr;
@@ -165,7 +156,7 @@ void Dlinkedlist::RemoveTail(void)
 		size --;
 
 	}
-bool Dlinkedlist::Tail(int * currentelement)
+bool Clinkedlist::Tail(int * currentelement)
 	{
 		if(size != 0)
 			{
@@ -176,7 +167,7 @@ bool Dlinkedlist::Tail(int * currentelement)
 			return 0;//list is empty
 
 	} 
-bool Dlinkedlist::Head(int * headelement)
+bool Clinkedlist::Head(int * headelement)
 	{
 		if(size != 0)
 			{
@@ -187,7 +178,7 @@ bool Dlinkedlist::Head(int * headelement)
 			return 0;//list is empty
 
 	} 
-bool Dlinkedlist::Search(int lookfor)
+bool Clinkedlist::Search(int lookfor)
 	{
 		unsigned long int i ;
 		node temp  = *head ;
@@ -202,31 +193,7 @@ bool Dlinkedlist::Search(int lookfor)
 		}
 		return 0 ;
 	}
-unsigned long int Dlinkedlist::Size(void)	
-	{
-		return size;
-	}
-
-void Dlinkedlist::PrintForward(void)  
-	{
-		node temp  = *head ;
-		unsigned long int i ;
-		for(i = 0 ; i < size ; i++)
-		{
-			std::cout<<temp.element<<std::endl;
-			if(temp.ptr == NULL) return;
-			temp = *(temp.ptr);
-		}
-		
-	}  
-void Dlinkedlist::PrintBackward(void)
-	{
-		node temp  = *tail ;
-		unsigned long int i ;
-		for(i = 0 ; i < size ; i++)
-		{
-			std::cout<<temp.element<<std::endl;
-			if(temp.prev == NULL) return;
-			temp = *(temp.prev);
-		}
-	}
+unsigned long int Clinkedlist::Size(void)	
+{
+	return size;
+}

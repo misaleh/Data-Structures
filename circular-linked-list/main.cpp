@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Slinked.hpp"
+#include "Clinked.hpp"
 using namespace std;
 
 int main()
@@ -7,10 +7,12 @@ int main()
 	bool result ; //used for searching
 	/*  Some test cases */
 	//Tail
-	cout<<"*INIT with 5"<<endl;
+	cout<<"*INIT"<<endl;
 	node * nodeptr= new node ; ; 
 	int element;
-	Slinkedlist ll(5);
+	Clinkedlist ll;
+	cout<<"*Insert Tail = 100"<<endl;
+	ll.InsertTail(100,&nodeptr);
 	ll.Head(&element);
 	cout<<"	Head  is = "<<element<<endl;
 	ll.Tail(&element);	
@@ -76,12 +78,20 @@ int main()
 	cout<<"	Head  is = "<<element<<endl;
 	ll.Tail(&element);
 	cout<<"	Tail is = "<<element<<endl;
+	Clinkedlist l2 = ll;
+	l2.Tail(&element);
+	cout<<"	Tail l2 is = "<<element<<endl;
+	l2.InsertTail(112,&nodeptr);
+	l2.Head(&element);
+	cout<<"	Head l2  is = "<<element<<endl;
+	l2.Tail(&element);
+	cout<<"	Tail l2 is = "<<element<<endl;
 
-	result = ll.Search(10);
-	cout << "searching for 10 = "<<result << endl;
-	result = ll.Search(11);
-	cout << "searching for 11= "<<result << endl;
+	//result = ll.Search(10);
+	//cout << "searching for 10 = "<<result << endl;
+	//result = ll.Search(11);
+	//cout << "searching for 11= "<<result << endl;
 	//Size
-	cout<<"Size of list =  "<<ll.Size()<<endl;
+	//cout<<"Size of list =  "<<ll.Size()<<endl;
 	return 0 ;
 }
