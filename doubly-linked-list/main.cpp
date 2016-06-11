@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Slinked.hpp"
+#include "Dlinked.hpp"
 using namespace std;
 
 int main()
@@ -7,10 +7,12 @@ int main()
 	bool result ; //used for searching
 	/*  Some test cases */
 	//Tail
-	cout<<"*INIT with 5"<<endl;
+	cout<<"*INIT "<<endl;
 	node * nodeptr= new node ; ; 
 	int element;
-	Slinkedlist ll(5);
+	Dlinkedlist ll;
+	cout<<"*Insert Head = 21"<<endl;
+	ll.InsertHead(21,&nodeptr);
 	ll.Head(&element);
 	cout<<"	Head  is = "<<element<<endl;
 	ll.Tail(&element);	
