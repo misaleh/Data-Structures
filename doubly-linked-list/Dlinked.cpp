@@ -125,6 +125,7 @@ void Dlinkedlist::RemoveHead(void)
 		else
 		{
 			node * next =  head->ptr;  // the element next to head 
+			delete head;
 			head = next ;  //make it the head now
 			head->prev = NULL;
 		}

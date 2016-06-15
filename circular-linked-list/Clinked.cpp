@@ -116,6 +116,7 @@ void Clinkedlist::RemoveHead(void)
 		else
 		{
 			node * next =  head->ptr;  // the element next to head 
+			delete head;
 			head = next ;  //make it the head now
 			tail->ptr = head; //point to head (circular)
 		}
