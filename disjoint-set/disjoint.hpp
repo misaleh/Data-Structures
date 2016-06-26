@@ -9,9 +9,9 @@ node * parent;
 class disjoint_set
 {
 public:
-node* Add(int);
-void Merge(node*,node*);
-node* Find(node*);
+node* Add(int);  //ad memeber to the set
+void Merge(node*,node*); // merge to nodes
+node* Find(node*); // find the parent of the node
 private:
 
 
